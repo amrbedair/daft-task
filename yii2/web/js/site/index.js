@@ -20,7 +20,11 @@ $(function() {
 	
 	$(document).on('click', '.lnk-more', function(e) {
 		// console.log($(e.target).html());
-		search($(e.target).html(), 'brewery', $(e.target).data('brewery-id'));
+		var $item = $(e.target);
+		$("#searchform-term").val($item.html());
+		$("#searchform-brewery_id").val($item.data('brewery-id'));
+		$("input[name='SearchForm[type]'][value='brewery']").prop("checked", true);
+		$("#frm-search").submit();
 		// return false;
 	});
 	
@@ -34,10 +38,14 @@ $(function() {
 		}
 	}); */
 	
-	function search(term, type='beer', breweryId='') {
-		$("#searchform-term").val(term);
-		$("#searchform-brewery_id").val(breweryId);
-		$("input[name='SearchForm[type]'][value='"+type+"']").prop("checked", true);
-		$("#frm-search").submit();
-	}
+	// send brewery_id only in case of "more from a specific brewery"
+	$(document).on('keyup', '#searchform-term', function(e) {
+		$("#searchform-brewery_id").val('');
+	});
+	
+	// send brewery_id only in case of "more from a specific brewery"
+	$(document).on('click', '#frm-search button', function(e) {
+		$("#searchform-brewery_id").val('');
+	});
+	
 });
