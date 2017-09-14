@@ -9,6 +9,14 @@ use app\models\forms\SearchForm;
 
 class SiteController extends Controller {
     
+    public function actions() {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+        ];
+    }
+    
     /**
      * default controller/action
      * site/index

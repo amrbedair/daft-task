@@ -7,6 +7,7 @@ use yii\helpers\Html;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -37,7 +38,9 @@ AppAsset::register($this);
         ],
     ]);
     ?>
-    <div class="navbar-header app-header"><?= Yii::$app->name ?></div>
+    <div class="navbar-header app-header">
+    	<a href="<?= Url::to('@web')?>" style="text-decoration: none;"><?= Yii::$app->name ?></a>
+    </div>
     <?php NavBar::end(); ?>
 
     <div class="container">

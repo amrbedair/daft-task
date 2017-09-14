@@ -3,6 +3,8 @@
 namespace app\helpers;
 
 use app\models\forms\SearchForm;
+use yii\helpers\Url;
+use yii\web\HttpException;
 
 $app = \Yii::getAlias("@app");
 
@@ -22,6 +24,20 @@ class BreweryDbHelper {
         $this->init();
     }
     
+    private function request($endpoint, $params=[], $method='GET') {
+        try {
+            $result = $this->bdb->request($endpoint, $params, $method);
+            if($result['status'] == 'failure') {
+                throw new HttpException(500, $result['errorMessage']);
+                //Url::toRoute('site/error');
+            }
+            return $result;
+        } catch (Exception $e) {
+            // log
+            \Yii::warning('[ERR-01] Error while trying to fetch styles '.$e->getMessage());
+        }
+    }
+    
     
     private function init() {
         
@@ -29,7 +45,7 @@ class BreweryDbHelper {
         $this->styles = \Yii::$app->cache->get('styles');
         if(!$this->styles) {
             try {
-                $result = $this->bdb->request('styles', [], 'GET');
+                $result = $this->request('styles');
                 $this->styles = $result['data'];
                 /**
                  * cache it for 24 hours, maybe we need more!
@@ -67,12 +83,12 @@ class BreweryDbHelper {
         try {
             while(true) {
                 $randomStyle = $this->styles[array_rand($this->styles)];
-                $result = $this->bdb->request('beers', [
+                $result = $this->request('beers', [
                     'styleId' => $randomStyle['id'], 
                     'order' => 'random', 
                     'randomCount' => 1,
                     'withBreweries' => 'Y',
-                ], 'GET');
+                ]);
                 
                 if(!isset($result['data'])) {
                     \Yii::warning('[ERR-03] Error retreiving data '.$result['errorMessage']);
@@ -102,11 +118,11 @@ class BreweryDbHelper {
         try {
             
             if($type == SearchForm::TYPE_BEER) { // TYPE_BEER
-                $result = $this->bdb->request('search', [
+                $result = $this->request('search', [
                     'p' => $page,
                     'q' => $q,
                     'type' => SearchForm::TYPE_BEER,
-                ], 'GET');
+                ]);
                 if(isset($result['data'])) {
                     $this->mergeValidBeers($beers, $result['data']);
                 }
@@ -117,12 +133,16 @@ class BreweryDbHelper {
                 
                 if(!$breweryId) {
                     // get brewery id first
-                    $result = $this->bdb->request('search', [
+                    $result = $this->request('search', [
                         'q' => $q,
                         'type' => SearchForm::TYPE_BREWERY,
-                    ], 'GET');
-                    $breweries = $result['data'];
-                    foreach ($breweries as $brewery) { $breweryIds[] = $brewery['id']; }
+                    ]);
+                    
+                    // check valid result
+                    if(isset($result['data']) && is_array($result['data'])) {
+                        $breweries = $result['data'];
+                        foreach ($breweries as $brewery) { $breweryIds[] = $brewery['id']; }
+                    }
                 }
                 
                 if(!empty($breweryIds)) {
@@ -130,7 +150,7 @@ class BreweryDbHelper {
                         // check if already cached
                         $result = \Yii::$app->cache->get("BREWERY_".$breweryId."_RESULT");
                         if(!$result) {
-                            $result = $this->bdb->request("/brewery/$breweryId/beers", [], 'GET');
+                            $result = $this->request("/brewery/$breweryId/beers");
                             \Yii::$app->cache->set("BREWERY_".$breweryId."_RESULT", $result, 60 * 60 * 24);
                         }
                         if(!isset($result['data'])) continue; 
