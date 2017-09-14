@@ -4,7 +4,7 @@ Simple application that requires accessing BreweryDB getting a random beer, fetc
 Here I am going to implement this with some technologies I feel you maybe interested in
 
 ## Yii
-This implementation utilizes the great Yii framework [version 2.x], it is a regular web application that does not has the new separation between backend and frontend, although I tried to do the best practices using ajax, caching, and partial renders when required to enhance performance as much as possible
+This implementation utilizes the great Yii framework [version 2.x], it is a regular web application that does not has the new separation between backend and frontend, although I tried to do the best practices using ajax, caching, and partial rendering when required to enhance performance as much as possible
 
 **To run this app simply do**
 * copy the directory yii2 into your servers docroot
