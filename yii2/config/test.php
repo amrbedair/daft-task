@@ -7,6 +7,7 @@ $db = require(__DIR__ . '/test_db.php');
  */
 return [
     'id' => 'basic-tests',
+    'name' => 'Distilled SCH Beer Application',
     'basePath' => dirname(__DIR__),    
     'language' => 'en-US',
     'components' => [
@@ -20,9 +21,12 @@ return [
         'urlManager' => [
             'showScriptName' => true,
         ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
         'user' => [
             'identityClass' => 'app\models\User',
-        ],        
+        ],
         'request' => [
             'cookieValidationKey' => 'test',
             'enableCsrfValidation' => false,
@@ -33,6 +37,11 @@ return [
             ],
             */
         ],        
+    ],
+    'container' => [
+        'singletons' => [
+            'breweryDbHelper' => ['class'=>'app\helpers\BreweryDbHelper'],
+        ]
     ],
     'params' => $params,
 ];

@@ -14,8 +14,8 @@ $(function() {
 	$("#pjax-bear-container").on('pjax:complete', function() {
 		// console.log('pjax-complete');
 		spinner.stop();
-		// search with empty query "clear"
-		search('');
+		// clear search result
+		$('div.list-view').empty();
 	});
 	
 	$(document).on('click', '.lnk-more', function(e) {
@@ -24,7 +24,7 @@ $(function() {
 		// return false;
 	});
 	
-	$(document).on('keyup', '#searchform-term', function(e) {
+	/* $(document).on('keyup', '#searchform-term', function(e) {
 		var match = /^[a-zA-Z0-9\s\-]+$/.test($('#searchform-term').val());
 		$("#frm-search button").prop('disabled', !match);
 		if(!match) {
@@ -32,7 +32,7 @@ $(function() {
 		} else {
 			$("#div-error").hide();
 		}
-	});
+	}); */
 	
 	function search(term, type='beer', breweryId='') {
 		$("#searchform-term").val(term);

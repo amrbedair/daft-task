@@ -25,7 +25,7 @@ class SearchForm extends Model {
     public function rules() {
         return [
             [['term', 'type'], 'required'],
-            ['term', 'match', 'pattern' => '/^[a-z]+$/', 'message' => 'Invalid characters in search query.'],
+            ['term', 'match', 'pattern' => '/^[a-zA-Z0-9\s\-]+$/', 'message' => 'Invalid Search Query; only letters, numbers, hyphens and spaces are allowed'],
             ['brewery_id', 'safe'],
         ];
     }
@@ -35,6 +35,7 @@ class SearchForm extends Model {
      */
     public function attributeLabels() {
         return [
+            'term' => 'Search Query'
         ];
     }
     

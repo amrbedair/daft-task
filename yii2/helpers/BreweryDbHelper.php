@@ -3,11 +3,11 @@
 namespace app\helpers;
 
 use app\models\forms\SearchForm;
-use Symfony\Component\Yaml\Dumper;
-use yii\helpers\VarDumper;
 
-require_once '../lib/Pintlabs/Service/Brewerydb/Exception.php';
-require_once '../lib/Pintlabs/Service/Brewerydb.php';
+$app = \Yii::getAlias("@app");
+
+require_once "$app/lib/Pintlabs/Service/Brewerydb/Exception.php";
+require_once "$app/lib/Pintlabs/Service/Brewerydb.php";
 
 class BreweryDbHelper {
     
@@ -115,7 +115,7 @@ class BreweryDbHelper {
                 
                 $breweryIds = $breweryId ? [$breweryId] : [];
                 
-                if(!$breweryId && $type == SearchForm::TYPE_BREWERY) {
+                if(!$breweryId) {
                     // get brewery id first
                     $result = $this->bdb->request('search', [
                         'q' => $q,
@@ -124,8 +124,6 @@ class BreweryDbHelper {
                     $breweries = $result['data'];
                     foreach ($breweries as $brewery) { $breweryIds[] = $brewery['id']; }
                 }
-                
-                $beers = [];
                 
                 if(!empty($breweryIds)) {
                     foreach ($breweryIds as $breweryId) {
