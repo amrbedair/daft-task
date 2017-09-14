@@ -23,11 +23,11 @@ use yii\helpers\VarDumper;
 	</div>
 	<div class="col-sm-3">
 		
-		<?= Html::a('Another Beer', Url::to(['site/index']), ['class' => 'btn btn-primary btn-block']); ?>
+		<?= Html::a('Another Beer', Url::to(['site/index']), ['class' => 'btn btn-lg btn-primary btn-block']); ?>
 		
 		<?php if(isset($beer['breweries'])) : ?>
 		<div class="btn-group" style="margin-top: 15px; width: 100%">
-  			<button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  			<button type="button" class="btn btn-lg btn-primary btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     			More From <span class="caret"></span>
   			</button>
   			<ul class="dropdown-menu dropdown-menu-right">
