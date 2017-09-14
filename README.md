@@ -21,6 +21,7 @@ while you are inside the directory yii2
 **Note:**
 * Yii is an MVC framework so it should be familiar, navigating the code should be easy, as you can see directory names are self explanatory, controllers for application controllers, views for views, and tests for test  
 * Yii uses Codeception for testing that uses PHPUnit for unit testing
+* Application is caching styles, and breweries' beers for 24 hours to enhance performance trying to minimize API hits, so I added a button to flush the cache if required
 * The "Back" link will always lead to my test server as it is hard coded 
 
 ## Laravel + Vue.js

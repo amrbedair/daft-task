@@ -41,12 +41,23 @@ AppAsset::register($this);
     <div class="navbar-header app-header">
     	<a href="<?= Url::to('@web')?>" style="text-decoration: none;"><?= Yii::$app->name ?></a>
     </div>
+    <a type="button" class="btn btn-sm btn-default navbar-btn pull-right" href="<?= Url::toRoute('site/flush-cache') ?>">Flush Cache</a>
     <?php NavBar::end(); ?>
-
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
+        <?php 
+    	foreach (['success', 'info', 'warning', 'danger'] as $key) {
+      		if(!empty($msg = \Yii::$app->session->getFlash($key))) {
+      			echo "
+    			<div class='alert alert-$key alert-dismissible' role='alert'style='margin: 5px;'>
+      				<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+      				$msg
+      			</div>";
+      		}
+    	}
+        ?>
         <?= $content ?>
     </div>
 </div>

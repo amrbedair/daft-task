@@ -6,6 +6,7 @@ use app\helpers\BreweryDbHelper;
 use Yii;
 use yii\web\Controller;
 use app\models\forms\SearchForm;
+use yii\helpers\Url;
 
 class SiteController extends Controller {
     
@@ -54,4 +55,9 @@ class SiteController extends Controller {
         return $this->renderPartial('_search_and_result', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider]);
     }
 
+    public function actionFlushCache() {
+        \Yii::$app->cache->flush();
+        \Yii::$app->session->setFlash('success', 'Cache flushed successfully');
+        return $this->redirect(Url::to('@web'));
+    }
 }
