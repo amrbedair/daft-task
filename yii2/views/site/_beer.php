@@ -28,7 +28,7 @@ use yii\helpers\VarDumper;
 		<?php if(isset($beer['breweries'])) : ?>
 		<div class="btn-group" style="margin-top: 15px; width: 100%">
   			<button type="button" class="btn btn-lg btn-primary btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    			More From <span class="caret"></span>
+    			More From <span class="caret pull-right" style="margin-top: 10px;"></span>
   			</button>
   			<ul class="dropdown-menu dropdown-menu-right">
     			<?php foreach ($beer['breweries'] as $brewery) : ?>
