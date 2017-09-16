@@ -21,6 +21,7 @@ vendor/bin/codecept run
 while you are inside the directory yii2
 
 **Note:**
+* Search by type="brewery" is searching for breweries, then returns all beers from those breweries
 * Yii is an MVC framework so it should be familiar, navigating the code should be easy, as you can see directory names are self explanatory, controllers for application controllers, views for views, and tests for test  
 * Yii uses Codeception for testing that uses PHPUnit for unit testing
 * Application is caching styles, and breweries' beers for 24 hours to enhance performance trying to minimize API hits, so I added a button to flush the cache if required
