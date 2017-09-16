@@ -44,3 +44,6 @@ Here I seperated the app into two parts; frontend and backend, frintend is writt
 
 ## Vue.js
 [sorry no time for this]
+
+### Notes
+* System needs some UI enhancements like for e.g. dimming the beer div while loading the new random one, same for the search result, also disabling the buttons while waiting for the ajax response, but all these are minor and simple touches
