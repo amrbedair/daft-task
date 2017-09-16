@@ -3,6 +3,8 @@ Simple application that requires accessing BreweryDB getting a random beer, fetc
 
 Here I am going to implement this with some technologies I feel you maybe interested in
 
+See working [demo](http://daft.nefya.com/)
+
 ## Yii
 This implementation utilizes the great Yii framework [version 2.x], it is a regular web application that does not has the new separation between backend and frontend, although I tried to do the best practices using ajax, caching, and partial rendering when required to enhance performance as much as possible
 
@@ -40,3 +42,4 @@ Here I seperated the app into two parts; frontend and backend, frintend is writt
 * The "Back" link will always lead to my test server as it is hard coded
 
 ## Vue.js
+[sorry no time for this]
