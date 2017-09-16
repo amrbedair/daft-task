@@ -9,7 +9,7 @@ This implementation utilizes the great Yii framework [version 2.x], it is a regu
 **To run this app simply do**
 * copy the directory yii2 into your servers docroot
 * run the command composer install
-* open url to http://localhost/yii2/web
+* open url to http://localhost/yii2/web - this may differ based on your deployment
 
 **To run tests [unit, and functional]; simply**
 * run the command
@@ -25,5 +25,18 @@ while you are inside the directory yii2
 * The "Back" link will always lead to my test server as it is hard coded 
 
 ## Laravel + Vue.js
+Here I seperated the app into two parts; frontend and backend, frintend is written using Vue.js, backend is written by Lumen - the micro-framework version of Laravel
+
+**To run this app simply do**
+* copy the direcory laravel-vuejs into your servers docroot
+* cd app_directory/backend
+* run "composer install"
+* open the file frontend/js/plugins.js
+* go line 28, config the backend url based on your server config. - you maybe using vhost
+* open url to http://localhost/laravel-vuejs/frontend/ - this may differ based on your deployment
+
+**Note:**
+* Application is caching styles, and breweries' beers for 24 hours to enhance performance trying to minimize API hits, so I added a button to flush the cache if required
+* The "Back" link will always lead to my test server as it is hard coded
 
 ## Vue.js
