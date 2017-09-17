@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  home:
+    build: ./
+    ports:
+      - 1984:80
+ 

@@ -5,6 +5,14 @@ Here I am going to implement this with some technologies I feel you maybe intere
 
 See working [demo](http://daft.nefya.com/)
 
+## Running
+The easiest way to run this demo locally is to:
+* clone this repo
+* cd inside your local copy 
+* run the command docker-compose build "for sure you have to have docker installed"
+* run the command docker-compose up
+* open http://localhost:1984/ in your browser
+
 ## Yii
 This implementation utilizes the great Yii framework [version 2.x], it is a regular web application that does not has the new separation between backend and frontend, although I tried to do the best practices using ajax, caching, and partial rendering when required to enhance performance as much as possible
 

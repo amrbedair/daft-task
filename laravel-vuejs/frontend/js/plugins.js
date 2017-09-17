@@ -26,7 +26,8 @@ var site = {};
 site.utils = (function($) {
 	
 	// var _backend_url = 'http://localhost/daft/laravel-vuejs/backend/public/'; // local
-	var _backend_url = 'http://daft.nefya.com/laravel-vuejs/backend/public/'; // prod
+	var _backend_url = 'http://localhost:1984/laravel-vuejs/backend/public/'; // docker
+	// var _backend_url = 'http://daft.nefya.com/laravel-vuejs/backend/public/'; // prod
 		
 	return {
 		bu: function(url) {
