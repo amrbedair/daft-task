@@ -21,4 +21,6 @@ RUN /var/www/html/composer.phar install
 WORKDIR ../laravel-vuejs/backend
 RUN /var/www/html/composer.phar install
 
+RUN chmod -R 0777 ./storage
+
 EXPOSE 80
